@@ -2,6 +2,8 @@ package com.us.ultimatesystemsrecruitmenttask.service;
 
 import com.us.ultimatesystemsrecruitmenttask.model.Student;
 
+import java.util.List;
+
 public interface StudentService {
 
     Student addStudent(Student student);
@@ -15,5 +17,7 @@ public interface StudentService {
     Student updateStudent(long id, Student student);
 
     void addTeacherToStudent(long studentId, long teacherId);
+
+    List<Student> findAllByNameAndLastName(String firstName, String lastName);
 
 }

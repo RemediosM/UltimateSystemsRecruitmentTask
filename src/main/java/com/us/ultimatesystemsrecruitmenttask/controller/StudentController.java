@@ -8,6 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("students")
 @RequiredArgsConstructor
@@ -46,6 +48,17 @@ public class StudentController {
         studentService.removeStudentById(id);
         return ResponseEntity.status(204)
                 .body("Student has been removed");
+    }
+
+    @GetMapping(value = "{firstName}{lastName}")
+    public ResponseEntity getStudentsByFirstNameAndLastName(@PathVariable("firstName") String firstName, @PathVariable("lastName") String lastName){
+        List<StudentDto> studentDtos = studentService.findAllByNameAndLastName(firstName, lastName).stream()
+                .map(Student::toDto)
+                .toList();
+
+        return ResponseEntity.status(200)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(studentDtos);
     }
 
 }

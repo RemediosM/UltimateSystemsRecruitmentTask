@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(student);
     }
 
-    public List<Student> findAllByNameAndSurname(String firstName, String lastName) {
+    public List<Student> findAllByNameAndLastName(String firstName, String lastName) {
         return studentRepository.findByFirstNameAndLastName(firstName, lastName);
     }
 
